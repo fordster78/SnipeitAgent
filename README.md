@@ -10,7 +10,7 @@ A Working Install of Snipe IT V4+
 #Library Packages
 
 ```
-Uses the Snipesharp c# library. All credit goes to brrycarey for his work.
+Uses the Snipesharp c# library. All credit goes to barrycarey for his work.
 ```
 
 ## License
