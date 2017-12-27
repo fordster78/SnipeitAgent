@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE006F22-B816-4EE8-AB35-E6A335889D46}</ProjectGuid>
+    <ProjectGuid>{67123636-E734-4B35-ACD0-098787D282E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Agent</RootNamespace>
@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,11 +41,12 @@
       <HintPath>..\packages\RestSharp.106.1.0\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SnipeSharp, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SnipeSharp.0.1.0\lib\net461\SnipeSharp.dll</HintPath>
+    <Reference Include="SnipeSharp, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SnipeSharp.0.1.2\lib\net461\SnipeSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -60,16 +60,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\GetHardware.cs" />
-    <Compile Include="Classes\GetOperatingSystem.cs" />
-    <Compile Include="Classes\Snipeit.cs" />
+    <Compile Include="Classes\Api.cs" />
+    <Compile Include="Classes\Main.cs" />
+    <Compile Include="Classes\Models\MyAsset.cs" />
+    <Compile Include="Classes\Models\MyAssetModel.cs" />
+    <Compile Include="Classes\Models\MyCompany.cs" />
+    <Compile Include="Classes\Models\MyManufacturer.cs" />
+    <Compile Include="Classes\Models\MyCategory.cs" />
+    <Compile Include="Classes\Queries\Hardware.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Win_info.cs">
+    <Compile Include="SystemInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Win_info.Designer.cs">
-      <DependentUpon>Win_info.cs</DependentUpon>
+    <Compile Include="SystemInformation.Designer.cs">
+      <DependentUpon>SystemInformation.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,11 +84,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Win_info.resx">
-      <DependentUpon>Win_info.cs</DependentUpon>
+    <EmbeddedResource Include="SystemInformation.resx">
+      <DependentUpon>SystemInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Config\Api.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,6 +105,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Agent.Classes
+namespace Agent.Classes.Queries
 {
-    class GetHardware
+    class Hardware
     {
         private static string querysystem(string query)
         {
@@ -19,7 +18,7 @@ namespace Agent.Classes
                 CreateNoWindow = true
             };
 
-            var proc = new Process() { StartInfo = procStartInfo };
+            var proc = new Process { StartInfo = procStartInfo };
             proc.Start();
 
             return proc.StandardOutput.ReadToEnd().Replace(query, string.Empty).Trim().ToUpper();
